@@ -1,0 +1,36 @@
+-- DML insert update delete
+
+SHOW DATABASES;
+
+USE scott;
+
+SHOW TABLES;
+
+SELECT *
+FROM scott.emp;
+
+START TRANSACTION;
+
+UPDATE scott.emp
+SET ENAME = 'zhangsan'
+WHERE EMPNO = 7499;
+
+SAVEPOINT a;
+
+DELETE FROM scott.emp
+WHERE EMPNO = 7566;
+
+SAVEPOINT b;
+
+INSERT INTO scott.emp (EMPNO, DEPTNO) VALUE (9999, 10);
+
+ROLLBACK TO a;
+ROLLBACK TO b;
+
+ROLLBACK;
+COMMIT;
+
+CREATE TABLE t (-- DDL CREATE DROP ALTER : COMMIT
+  id INT
+);
+
