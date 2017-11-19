@@ -6,11 +6,37 @@
 </head>
 <body>
 <h1>登录</h1>
-<form action="/signIn" method="post">
+<!--<form action="/signIn" method="post">-->
     用户名: <input type="text" name="username" placeholder="用户名"><br>
     密码: <input type="password" name="password" placeholder="密码"><br>
-    <input type="submit" value="登录">
-</form>
-<a href="/sign-up">注册</a>
+    <input type="submit" value="登录"><br>
+<!--</form>-->
+<!--<a href="/sign-up">注册</a>-->
+<a href="sign-up.html">注册</a>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    <!--添加ajax请求-->
+    $(function(){
+        $('[type=submit]').click(function(){
+            $.ajax({
+                type:'post',
+                url:'/signIn',
+                data:{username:$('[type=text]').val(),password:$('[type=password]').val()},
+                success:function(data){
+                    console.log(data.status);
+                    if(data.status=="OK"){
+                        window.location.href="./home.html"
+                    }else{
+                        window.location.href="./index.html"
+                    }
+                },
+                error:function(){
+                    alert("网络错误,请检查")
+                }
+            })
+        })
+    })
+</script>
 </body>
 </html>
